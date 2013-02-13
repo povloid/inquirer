@@ -25,7 +25,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
+		<h:form id="form">
 			<p:panel header="Детали:" style="margin-top:10px">
 				<p:messages showDetail="true" autoUpdate="true" />
 
@@ -36,18 +36,57 @@
 					<h:outputText value="#{questionEditWFControl.edited.id}"
 						rendered="#{questionEditWFControl.edited.id != null}" />
 
-					<h:outputLabel value="KeyName:" />
+					<h:outputLabel value="Краткий заголовок:" />
 					<p:inputText value="#{questionEditWFControl.edited.keyName}"
 						title="Username" readonly="#{del}" required="true"
 						requiredMessage="The keyName field is required." />
+												
+					<h:outputLabel value="Текст вопроса:" />
+					<p:inputTextarea readonly="#{del}" required="true"
+						value="#{questionEditWFControl.edited.qText}"
+						style="width:300px;height:100px;" title="Description" />
+						
 
-					<h:outputLabel value="Description:" />
+					<h:outputLabel value="Пометки:" />
 					<p:inputTextarea readonly="#{del}"
 						value="#{questionEditWFControl.edited.description}"
 						style="width:300px;height:100px;" title="Description" />
 						
 			
 				</h:panelGrid>
+				
+				<br />
+				
+				<p:fieldset legend="Ответы">
+					<p:dataTable var="row"
+						value="#{questionEditWFControl.edited.answers}">
+
+						<p:column headerText="id">
+							<h:outputText value="#{row.id}" />
+						</p:column>
+
+						<p:column headerText="Ответ">
+							<h:outputText value="#{row.keyName}" />
+						</p:column>
+
+						<p:column headerText="Действие"
+							style="width: 100px; text-align: center;">
+							<pk:pktable_crud_column_buttons_wf show_edit_button="true"
+								edit_action="#{questionEditWFControl.editAnswer}"
+								del_action="#{questionEditWFControl.delAnswer}"
+								show_view_button="true"
+								view_button_oncomplete="rowDitailDialog.show()"
+								selected="#{questionEditWFControl.selectedAnswer}"
+								row="#{row}" />
+						</p:column>
+
+					</p:dataTable>
+					<br />
+					<pk:pk_add_button_wf
+						add_action="#{questionEditWFControl.addAnswer}" />
+				</p:fieldset>
+				
+				
 
 				<br />
 
@@ -59,6 +98,37 @@
 					del_action="#{questionEditWFControl.confirmDel}" add_view="#{add}"
 					edit_view="#{edit}" del_view="#{del}" />
 			</p:panel>
+			
+			
+			<p:dialog header="Детали...." widgetVar="rowDitailDialog"
+				resizable="false" id="rowDitailDialog" showEffect="fade"
+				hideEffect="explode" modal="true">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4"
+					style="margin:0 auto;">
+
+					<f:facet name="header">
+
+					</f:facet>
+
+					<h:outputText value="id:" />
+					<h:outputText
+						value="#{questionEditWFControl.selectedAnswer.id}"
+						style="font-weight:bold" />
+
+
+
+					<f:facet name="footer">
+						<p:outputPanel layout="block" style="text-align:right">
+							<p:commandButton value="Close" onclick="rowDitailDialog.hide()"
+								type="button" icon="ui-icon ui-icon-close" />
+						</p:outputPanel>
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog>
+			
+			
+			
 		</h:form>
 	</ui:define>
 	<ui:define name="footer">

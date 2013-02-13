@@ -10,6 +10,7 @@
 	<var name="answerEditWFControl" class="pk.home.inquirer.web.jsf.webflow.AnswerEditWFControl" />
 
 	<input name="id" type="java.lang.Long" />
+	<input name="questionId" value="answerEditWFControl.questionId" required="true" />
 	<input name="mode" required="true" type="java.lang.String" />
 	<input name="retUrl" type="java.lang.String" />
 
@@ -69,7 +70,7 @@
 
 		<transition on="error" to="answerEdit"></transition>
 		<!-- <transition on-exception="java.lang.Exception" to="busedit"/> -->
-	</view-state>
+	</view-state>	
 
 
 	<decision-state id="end">

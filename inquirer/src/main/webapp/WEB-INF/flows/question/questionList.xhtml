@@ -66,7 +66,7 @@
 				</p:column>
 
 				<p:column>
-					<f:facet name="header">
+					<f:facet name="Вопрос">
 						<pk:pktsortorder field="keyName"
 							csortOrder="#{questionViewControl.csortOrder}"
 							csortField="#{questionViewControl.csortField}" />
@@ -74,7 +74,7 @@
 					<h:outputText value="#{row.keyName}" />
 				</p:column>
 
-				<p:column headerText="Описание" >
+				<p:column headerText="Пометки" >
 					<h:outputText value="#{row.description}" />
 				</p:column>
 
@@ -115,13 +115,20 @@
 					<h:outputText value="#{questionViewControl.selected.id}"
 						style="font-weight:bold" />
 
-					<h:outputText value="KeyName:" />
+					<h:outputText value="Краткий заголовок:" />
 					<h:outputText value="#{questionViewControl.selected.keyName}"
 						style="font-weight:bold" />
 
 
-					<h:outputText value="Description:" />
-					<p:scrollPanel style="width:350px;height:200px" scrollMode="native">
+					<h:outputText value="Вопрос:" />
+					<p:scrollPanel style="width:350px;height:100px" scrollMode="native">
+						<h:outputText
+							value="#{questionViewControl.selected.qText}"
+							escape="false" />
+					</p:scrollPanel>
+
+					<h:outputText value="Заметки:" />
+					<p:scrollPanel style="width:350px;height:100px" scrollMode="native">
 						<h:outputText
 							value="#{questionViewControl.selected.description}"
 							escape="false" />

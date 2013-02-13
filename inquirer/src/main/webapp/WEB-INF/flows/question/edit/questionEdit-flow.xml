@@ -66,10 +66,43 @@
 		<transition on="editComplite" to="questionEdit" />
 		<transition on="editCompliteAndClose" to="end" />
 		<transition on="delComplite" to="end"></transition>
+		
+		<transition on="addAnswer" to="addAnswer" />
+		<transition on="editAnswer" to="editAnswer" />
+		<transition on="delAnswer" to="delAnswer" />
 
 		<transition on="error" to="questionEdit"></transition>
 		<!-- <transition on-exception="java.lang.Exception" to="busedit"/> -->
 	</view-state>
+	
+	
+	<!-- Answer operations -->
+		
+	<subflow-state id="addAnswer" subflow="answer/edit">
+		<input name="mode" value="'add'" />
+		<input name="questionId" value="questionEditWFControl.edited.id" />
+
+		<transition to="findEdited" />
+	</subflow-state>
+	
+	<subflow-state id="editAnswer" subflow="answer/edit">
+		<input name="mode" value="'edit'" />
+		<input name="id" value="questionEditWFControl.selectedAnswer.id" />
+		<input name="questionId" value="questionEditWFControl.edited.id" />
+
+		<transition to="findEdited" />
+	</subflow-state>
+	
+	
+	<subflow-state id="delAnswer" subflow="answer/edit">
+		<input name="mode" value="'del'" />
+		<input name="id" value="questionEditWFControl.selectedAnswer.id" />
+		<input name="questionId" value="questionEditWFControl.edited.id" />
+
+		<transition to="findEdited" />
+	</subflow-state>
+	
+	<!--  -->
 
 
 	<decision-state id="end">

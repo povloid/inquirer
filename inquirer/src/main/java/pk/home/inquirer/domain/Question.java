@@ -3,51 +3,57 @@ package pk.home.inquirer.domain;
 import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Entity class: Question
- * Question - вопрос
- *
+ * Entity class: Question Question - вопрос
+ * 
  */
 @Entity
 @Table(schema = "public", name = "Question")
 @NamedQueries({
-	@NamedQuery(name = "Question.findAll", query = "select a from Question a order by a.id"),
-	@NamedQuery(name = "Question.findByPrimaryKey", query = "select a from Question a where a.id = ?1")})
+		@NamedQuery(name = "Question.findAll", query = "select a from Question a order by a.id"),
+		@NamedQuery(name = "Question.findByPrimaryKey", query = "select a from Question a where a.id = ?1") })
 public class Question implements Serializable {
 
-	   
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
-    @Column(unique=true, nullable = false)
+	@Column(unique = true, nullable = false)
 	private String keyName;
-	
-	
+
+	@NotNull
+	private String qText;
+
 	private String description;
-	
+
+	@OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
+	@OrderColumn(name = "orId")
+	private List<Answer> answers;
 
 	public Question() {
 		super();
-	}   
+	}
+
 	public Long getId() {
 		return this.id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}   
+	}
+
 	public String getKeyName() {
 		return this.keyName;
 	}
@@ -55,7 +61,8 @@ public class Question implements Serializable {
 	public void setKeyName(String keyName) {
 		System.out.println(keyName);
 		this.keyName = keyName;
-	}   
+	}
+
 	public String getDescription() {
 		return this.description;
 	}
@@ -63,7 +70,23 @@ public class Question implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public String getqText() {
+		return qText;
+	}
+
+	public void setqText(String qText) {
+		this.qText = qText;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -89,5 +112,5 @@ public class Question implements Serializable {
 	public String toString() {
 		return "pk.home.inquirer.domain.Question[ id=" + id + " ]";
 	}
-   
+
 }

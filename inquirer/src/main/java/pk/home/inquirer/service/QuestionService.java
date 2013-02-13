@@ -24,5 +24,25 @@ public class QuestionService extends ABaseService<Question> {
 	public ABaseDAO<Question> getAbstractBasicDAO() {
 		return questionDAO;
 	}
+	
+	
+	/**
+	 * Загрузка вместе с коллекциями
+	 * 
+	 * @param key
+	 * @return
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	public Question findWithLazy(Object key) throws Exception {
+		Question question = super.find(key);
+
+		if (question.getAnswers() != null) {
+			question.getAnswers().size();
+		}
+
+		return question;
+	}
+	
 
 }
