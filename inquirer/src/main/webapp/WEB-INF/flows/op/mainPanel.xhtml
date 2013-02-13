@@ -84,7 +84,9 @@
 
 				<p:column headerText="Действие"
 					style="width: 100px; text-align: center;">
-					
+					<p:commandButton value="Ответить" ajax="false" action="goToAnswer">
+						<f:setPropertyActionListener value="#{row.id}" target="#{flowScope.selectedId}" />
+					</p:commandButton>
 				</p:column>
 
 
@@ -99,7 +101,7 @@
 
 			</p:dataTable>
 
-			
+
 
 
 		</h:form>

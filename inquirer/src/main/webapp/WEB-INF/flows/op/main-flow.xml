@@ -8,20 +8,24 @@
 	<secured attributes="ROLE_USER" />
 	
 	<var name="questionViewControl" class="pk.home.inquirer.web.jsf.webflow.QuestionViewWFControl" />
+	
+	<on-start>
+		<set name="flowScope.selectedId" value="0" type="long" />
+	</on-start>
+	
+	
+
 
 	<view-state id="mainPanel">
-		<transition on="findRaces" to="findRaces" />
+		<transition on="goToAnswer" to="goToAnswer" />
 		<transition on="return" to="return" />
 	</view-state>
 
 
-	<subflow-state id="findRaces" subflow="op/findRaces">
-		<transition to="mainPanel" />
-	</subflow-state>
+	<subflow-state id="goToAnswer" subflow="op/answerForm">
+		<input name="id" value="selectedId" />
 
-
-	<subflow-state id="return" subflow="op/return">
-		<transition to="mainPanel" />
+		<transition to="mainPanel" />	
 	</subflow-state>
 
 </flow>
