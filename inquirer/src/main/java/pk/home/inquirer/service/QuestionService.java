@@ -39,7 +39,10 @@ public class QuestionService extends ABaseService<Question> {
 
 		if (question.getAnswers() != null) {
 			question.getAnswers().size();
+			System.out.println(question.getAnswers().size());
 		}
+		
+		
 
 		return question;
 	}

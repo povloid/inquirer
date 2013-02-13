@@ -57,13 +57,13 @@
 				
 				<br />
 				
-				<p:fieldset legend="Ответы">
+				<p:fieldset legend="Ответы" rendered="#{not empty questionEditWFControl.edited.id}">
 					<p:dataTable var="row"
 						value="#{questionEditWFControl.edited.answers}">
 
-						<p:column headerText="id">
+						<!--  p:column headerText="id">
 							<h:outputText value="#{row.id}" />
-						</p:column>
+						</p:column -->
 
 						<p:column headerText="Ответ">
 							<h:outputText value="#{row.keyName}" />

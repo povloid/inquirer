@@ -34,6 +34,7 @@ public class Question implements Serializable {
 	private String keyName;
 
 	@NotNull
+	@Column(nullable = false)
 	private String qText;
 
 	private String description;

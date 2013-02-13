@@ -23,9 +23,6 @@ public class AnswerEditWFControl extends AWFControl<Answer, Long> implements
 
 	@Override
 	public Answer findEdited(Long id) throws Exception {
-		
-		System.out.println("id>>>" + id);
-		
 		return getAnswerService().find(id);
 	}
 

@@ -28,7 +28,7 @@ public class Answer implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private String keyName;
 
 	@Column(name = "orId")
