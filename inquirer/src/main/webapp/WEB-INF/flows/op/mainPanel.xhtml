@@ -10,7 +10,7 @@
 
 <ui:composition template="/WEB-INF/templites/templite.xhtml">
 	<ui:define name="title">
-        Панель операций
+        Главная страница
     </ui:define>
 
 	<ui:define name="header_icon">
@@ -18,7 +18,7 @@
 	</ui:define>
 
 	<ui:define name="header">
-         Панель операций
+         Главная страница
     </ui:define>
 
 	<ui:define name="content">
@@ -30,12 +30,81 @@
 </style>
 
 
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{questionViewControl.init}" />
+			<f:viewParam name="ppage" value="#{questionViewControl.page}" />
+			<f:viewParam name="prows" value="#{questionViewControl.prows}" />
+			<f:viewParam name="pcsortField"
+				value="#{questionViewControl.pcsortField}" />
+			<f:viewParam name="pcsortOrder"
+				value="#{questionViewControl.pcsortOrder}" />
+		</f:metadata>
+
 		<h:form id="form">
+
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:dataTable id="table1" var="row"
+				value="#{questionViewControl.dataModel}" widgetVar="dataTable1"
+				emptyMessage="Таблица пустая">
+
+
+				<f:facet name="header">
+					<pk:pkpaginator pages="#{questionViewControl.allPagesCount}"
+						count="#{questionViewControl.allRowsCount}"
+						page="#{questionViewControl.page}"
+						buttons="#{questionViewControl.oPButtons}"
+						rows="#{questionViewControl.rows}" />
+
+				</f:facet>
+
+
+
+				<p:column>
+					<f:facet name="header">
+						<pk:pktsortorder field="id"
+							csortOrder="#{questionViewControl.csortOrder}"
+							csortField="#{questionViewControl.csortField}" />
+					</f:facet>
+					<h:outputText value="#{row.id}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="Вопрос">
+						<pk:pktsortorder field="keyName"
+							csortOrder="#{questionViewControl.csortOrder}"
+							csortField="#{questionViewControl.csortField}" />
+					</f:facet>
+					<h:outputText value="#{row.keyName}" />
+				</p:column>
+
+				<p:column headerText="Пометки">
+					<h:outputText value="#{row.description}" />
+				</p:column>
+
+				<p:column headerText="Действие"
+					style="width: 100px; text-align: center;">
+					
+				</p:column>
+
+
+				<f:facet name="footer">
+					<pk:pkpaginator pages="#{questionViewControl.allPagesCount}"
+						count="#{questionViewControl.allRowsCount}"
+						page="#{questionViewControl.page}"
+						buttons="#{questionViewControl.oPButtons}"
+						rows="#{questionViewControl.rows}" />
+				</f:facet>
+
+
+			</p:dataTable>
+
+			
 
 
 		</h:form>
-		
-		
+
+
 	</ui:define>
 
 	<ui:define name="footer">

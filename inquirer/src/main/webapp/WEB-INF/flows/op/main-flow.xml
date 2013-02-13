@@ -6,6 +6,8 @@
 	start-state="mainPanel">
 
 	<secured attributes="ROLE_USER" />
+	
+	<var name="questionViewControl" class="pk.home.inquirer.web.jsf.webflow.QuestionViewWFControl" />
 
 	<view-state id="mainPanel">
 		<transition on="findRaces" to="findRaces" />
