@@ -8,6 +8,7 @@
 	<secured attributes="ROLE_USER" />
 
 	<var name="inquirerEditWFControl" class="pk.home.inquirer.web.jsf.webflow.InquirerEditWFControl" />
+	<var name="questionViewControl" class="pk.home.inquirer.web.jsf.webflow.QuestionViewWFControl" />
 
 	<input name="id" type="java.lang.Long" />
 	<input name="mode" required="true" type="java.lang.String" />
@@ -66,10 +67,42 @@
 		<transition on="editComplite" to="inquirerEdit" />
 		<transition on="editCompliteAndClose" to="end" />
 		<transition on="delComplite" to="end"></transition>
+		
+		
+		<transition on="add" to="op">
+			<set name="flashScope.modes" value="'add'" type="java.lang.String" />
+			<set name="flashScope.ids" value="null" type="long" />
+		</transition>
+		<transition on="edit" to="op">
+			<set name="flashScope.modes" value="'edit'" type="java.lang.String" />
+			<set name="flashScope.ids" value="questionViewControl.selected.id"
+				type="long" />
+		</transition>
+		<transition on="del" to="op">
+			<set name="flashScope.modes" value="'del'" type="java.lang.String" />
+			<set name="flashScope.ids" value="questionViewControl.selected.id"
+				type="long" />
+		</transition>
+		
 
 		<transition on="error" to="inquirerEdit"></transition>
 		<!-- <transition on-exception="java.lang.Exception" to="busedit"/> -->
 	</view-state>
+	
+	
+	<!-- Querys -->
+	
+	<subflow-state id="op" subflow="question/edit">
+		<input name="mode" value="modes" />
+		<input name="id" value="ids" />
+
+		<transition to="inquirerEdit" />
+	</subflow-state>
+	
+	
+	
+	
+	<!-- END FLOW -->
 
 
 	<decision-state id="end">

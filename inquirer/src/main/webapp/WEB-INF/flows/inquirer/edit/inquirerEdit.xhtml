@@ -25,7 +25,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
+		<h:form id="form">
 			<p:panel header="Детали:" style="margin-top:10px">
 				<p:messages showDetail="true" autoUpdate="true" />
 
@@ -45,8 +45,8 @@
 					<p:inputTextarea readonly="#{del}"
 						value="#{inquirerEditWFControl.edited.description}"
 						style="width:300px;height:100px;" title="Description" />
-						
-			
+
+
 				</h:panelGrid>
 
 				<br />
@@ -59,6 +59,132 @@
 					del_action="#{inquirerEditWFControl.confirmDel}" add_view="#{add}"
 					edit_view="#{edit}" del_view="#{del}" />
 			</p:panel>
+
+
+			<br/>
+
+
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{questionViewControl.init}" />
+				<f:viewParam name="ppage" value="#{questionViewControl.page}" />
+				<f:viewParam name="prows" value="#{questionViewControl.prows}" />
+				<f:viewParam name="pcsortField"
+					value="#{questionViewControl.pcsortField}" />
+				<f:viewParam name="pcsortOrder"
+					value="#{questionViewControl.pcsortOrder}" />
+			</f:metadata>
+
+
+
+			<p:growl id="msgs" showDetail="true" />
+
+			<pk:pk_add_button_wf add_action="#{questionViewControl.add}" />
+
+			<p:dataTable id="table1" var="row"
+				value="#{questionViewControl.dataModel}" widgetVar="dataTable1"
+				emptyMessage="Таблица пустая">
+
+
+				<f:facet name="header">
+					<pk:pkpaginator pages="#{questionViewControl.allPagesCount}"
+						count="#{questionViewControl.allRowsCount}"
+						page="#{questionViewControl.page}"
+						buttons="#{questionViewControl.oPButtons}"
+						rows="#{questionViewControl.rows}" />
+
+				</f:facet>
+
+
+
+				<p:column>
+					<f:facet name="header">
+						<pk:pktsortorder field="id"
+							csortOrder="#{questionViewControl.csortOrder}"
+							csortField="#{questionViewControl.csortField}" />
+					</f:facet>
+					<h:outputText value="#{row.id}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="Вопрос">
+						<pk:pktsortorder field="keyName"
+							csortOrder="#{questionViewControl.csortOrder}"
+							csortField="#{questionViewControl.csortField}" />
+					</f:facet>
+					<h:outputText value="#{row.keyName}" />
+				</p:column>
+
+				<p:column headerText="Пометки">
+					<h:outputText value="#{row.description}" />
+				</p:column>
+
+				<p:column headerText="Действие"
+					style="width: 100px; text-align: center;">
+					<pk:pktable_crud_column_buttons_wf
+						edit_action="#{questionViewControl.edit}"
+						del_action="#{questionViewControl.del}" show_view_button="true"
+						view_button_oncomplete="rowDitailDialog.show()"
+						selected="#{questionViewControl.selected}" row="#{row}" />
+				</p:column>
+
+
+				<f:facet name="footer">
+					<pk:pkpaginator pages="#{questionViewControl.allPagesCount}"
+						count="#{questionViewControl.allRowsCount}"
+						page="#{questionViewControl.page}"
+						buttons="#{questionViewControl.oPButtons}"
+						rows="#{questionViewControl.rows}" />
+				</f:facet>
+
+
+			</p:dataTable>
+
+
+			<p:dialog header="Row Detail" widgetVar="rowDitailDialog"
+				resizable="false" id="rowDitailDialog" showEffect="fade"
+				hideEffect="explode" modal="true">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4"
+					style="margin:0 auto;">
+
+					<f:facet name="header">
+
+					</f:facet>
+
+					<h:outputText value="id:" />
+					<h:outputText value="#{questionViewControl.selected.id}"
+						style="font-weight:bold" />
+
+					<h:outputText value="Краткий заголовок:" />
+					<h:outputText value="#{questionViewControl.selected.keyName}"
+						style="font-weight:bold" />
+
+
+					<h:outputText value="Вопрос:" />
+					<p:scrollPanel style="width:350px;height:100px" scrollMode="native">
+						<h:outputText value="#{questionViewControl.selected.qText}"
+							escape="false" />
+					</p:scrollPanel>
+
+					<h:outputText value="Заметки:" />
+					<p:scrollPanel style="width:350px;height:100px" scrollMode="native">
+						<h:outputText value="#{questionViewControl.selected.description}"
+							escape="false" />
+					</p:scrollPanel>
+
+					<f:facet name="footer">
+						<p:outputPanel layout="block" style="text-align:right">
+							<p:commandButton value="Close" onclick="rowDitailDialog.hide()"
+								type="button" icon="ui-icon ui-icon-close" />
+						</p:outputPanel>
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog>
+
+
+
+
+
 		</h:form>
 	</ui:define>
 	<ui:define name="footer">
