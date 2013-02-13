@@ -18,6 +18,7 @@
 					<sec:authorize
 						ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_QUIRE_EDITOR">
 						<p:submenu label="Данные для опросов">
+							<p:menuitem value="Опросники" icon="ui-icon addbk" url="/mvc/inquirer" />
 							<p:menuitem value="Вопросы" icon="ui-icon addbk" url="/mvc/question" />
 						</p:submenu>
 					</sec:authorize>
