@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+
+	<context-param>
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<init-param>
+			<param-name>thresholdSize</param-name>
+			<param-value>51200</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	<context-param>
+		<param-name>com.sun.faces.enableMissingResourceLibraryDetection</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+
+
+
+
+<!-- 	<context-param> -->
+<!-- 		<param-name>primefaces.THEME</param-name> -->
+<!-- 		<param-value>flick</param-value> -->
+<!-- 	</context-param> -->
+	<session-config>
+		<session-timeout>300</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>faces/redirect.jsp</welcome-file>
+	</welcome-file-list>
+
+
+
+
+
+	<!-- JSF 2 IMPLEMENTATION -->
+	<!-- Use JSF view templates saved as *.xhtml, for use with Facelets -->
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<!-- Enables special Facelets debug output during development -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+<!-- 		<param-value>Production</param-value> -->
+	</context-param>
+	<!-- Causes Facelets to refresh templates during development -->
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>1</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<!-- Just here so the JSF implementation can initialize, *not* used at runtime -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+	<servlet>
+		<description>The Image Servlet</description>
+		<display-name>Image</display-name>
+		<servlet-name>Image</servlet-name>
+		<servlet-class>pk.home.vta.web.servlets.Image</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Image</servlet-name>
+		<url-pattern>/Image</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description>The RobotsTXT Servlet</description>
+		<display-name>RobotsTXT</display-name>
+		<servlet-name>RobotsTXT</servlet-name>
+		<servlet-class>pk.home.vta.web.servlets.RobotsTXT</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RobotsTXT</servlet-name>
+		<url-pattern>/robots.txt</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<!-- The front controller of this Spring Web application, responsible for 
+		handling all application requests -->
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>/mvc/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<filter>
+		<filter-name>Charset Filter</filter-name>
+		<filter-class>pk.home.libs.combine.web.filters.CharsetFilter</filter-class>
+		<init-param>
+			<param-name>requestEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Charset Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
+
+	<!-- Почемуто хреново работает -->
+	<!-- <filter> -->
+	<!-- <filter-name>charEncodingFilter</filter-name> -->
+	<!-- <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>encoding</param-name> -->
+	<!-- <param-value>UTF-8</param-value> -->
+	<!-- </init-param> -->
+	<!-- <init-param> -->
+	<!-- <param-name>forceEncoding</param-name> -->
+	<!-- <param-value>true</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+
+
+
+
+	<filter>
+		<filter-name>CacheControl</filter-name>
+		<filter-class>pk.home.busterminal.web.filters.CacheFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CacheControl</filter-name>
+		<url-pattern>/mvc/image/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<listener>
+    	<listener-class>
+      	org.springframework.security.web.session.HttpSessionEventPublisher
+    	</listener-class>
+  	</listener>
+  	
+  	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
+	</context-param>
+  	
+		
+
+	<!-- <security-constraint> -->
+	<!-- <web-resource-collection> -->
+	<!-- <web-resource-name>All VTA Control</web-resource-name> -->
+	<!-- <url-pattern>/faces/jsf/control/*</url-pattern> -->
+	<!-- </web-resource-collection> -->
+	<!-- <auth-constraint> -->
+	<!-- <role-name>vta</role-name> -->
+	<!-- </auth-constraint> -->
+	<!-- <user-data-constraint> -->
+	<!-- <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+	<!-- </user-data-constraint> -->
+	<!-- </security-constraint> -->
+
+	<!-- <login-config> -->
+	<!-- <auth-method>BASIC</auth-method> -->
+	<!-- <realm-name>VTA Application</realm-name> -->
+	<!-- </login-config> -->
+
+
+	<!-- <security-role> -->
+	<!-- <description> -->
+	<!-- The role that is required to log in to the vta application -->
+	<!-- </description> -->
+	<!-- <role-name>vta</role-name> -->
+	<!-- </security-role> -->
+
+
+	<locale-encoding-mapping-list>
+		<locale-encoding-mapping>
+			<locale>en</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+		<locale-encoding-mapping>
+			<locale>ru</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+		<locale-encoding-mapping>
+			<locale>ru_RU</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+	</locale-encoding-mapping-list>
+
+
+
+</web-app>
+<!-- Полезное !!!!! -->
+<!-- <context-param> -->
+<!-- <param-name>com.icesoft.faces.uploadDirectory</param-name> -->
+<!-- <param-value>upload</param-value> -->
+<!-- </context-param> -->
+<!-- <context-param> -->
+<!-- <param-name>com.icesoft.faces.uploadMaxFileSize</param-name> -->
+<!-- <param-value>4048576</param-value> -->
+<!-- </context-param> -->
+<!-- <servlet> -->
+<!-- <servlet-name>Persistent Faces Servlet</servlet-name> -->
+<!-- <servlet-class>com.icesoft.faces.webapp.xmlhttp.PersistentFacesServlet</servlet-class> -->
+<!-- <load-on-startup>1</load-on-startup> -->
+<!-- </servlet> -->
+<!-- <servlet-mapping> -->
+<!-- <servlet-name>Persistent Faces Servlet</servlet-name> -->
+<!-- <url-pattern>*.iface</url-pattern> -->
+<!-- <url-pattern>*.jspx</url-pattern> -->
+<!-- <url-pattern>/xmlhttp/*</url-pattern> -->
+<!-- <url-pattern>/faces/*</url-pattern> -->
+<!-- </servlet-mapping> -->
+<!-- <servlet> -->
