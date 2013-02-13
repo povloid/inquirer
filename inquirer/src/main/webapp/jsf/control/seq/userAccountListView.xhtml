@@ -78,16 +78,6 @@
 					<h:outputText value="#{row.username}" />
 				</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<pk:pktsortorder field="division"
-							csortOrder="#{userAccountViewControl.csortOrder}"
-							csortField="#{userAccountViewControl.csortField}" />
-					</f:facet>
-					<h:graphicImage value="/images/icons/group_24.png" />
-					<h:outputText value="#{row.division.keyName}" />
-				</p:column>
-
 				<p:column headerText="Описание">
 					<h:outputText value="#{row.description}" />
 				</p:column>
