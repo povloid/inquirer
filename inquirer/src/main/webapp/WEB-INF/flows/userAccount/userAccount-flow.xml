@@ -8,7 +8,7 @@
 	<secured attributes="ROLE_ADMIN" />
 
 	<var name="userAccountWFControl"
-		class="pk.home.busterminal.web.jsf.webflow.security.UserAccountWFControl" />
+		class="pk.home.inquirer.web.jsf.webflow.security.UserAccountWFControl" />
 
 	<input name="id" type="java.lang.Long" />
 	<input name="mode" required="true" type="java.lang.String" />

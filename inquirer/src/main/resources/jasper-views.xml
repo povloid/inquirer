@@ -28,7 +28,7 @@
 			<map>
 				<entry
 					key="net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI">
-					<value>/busterminal/images/report/</value>
+					<value>/inquirer/images/report/</value>
 				</entry>
 			</map>
 		</property>

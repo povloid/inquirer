@@ -44,7 +44,7 @@
 
 	<security:http auto-config='true'
 		access-decision-manager-ref="accessDecisionManager">
-		<security:remember-me key="busterminal"
+		<security:remember-me key="inquirer"
 			user-service-ref="busTerminalUserDetailsService" />
 
 		<security:intercept-url pattern="/faces/jsf/control/**"

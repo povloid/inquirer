@@ -130,7 +130,7 @@
 
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="pk.home.busterminal.web.mvc" />
+	<context:component-scan base-package="pk.home.inquirer.web.mvc" />
 
 	
 <!-- 	<import resource="classpath:jasper-views.xml" /> -->

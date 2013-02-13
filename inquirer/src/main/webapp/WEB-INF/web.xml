@@ -185,7 +185,7 @@
 
 	<filter>
 		<filter-name>CacheControl</filter-name>
-		<filter-class>pk.home.busterminal.web.filters.CacheFilter</filter-class>
+		<filter-class>pk.home.inquirer.web.filters.CacheFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
