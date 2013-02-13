@@ -7,6 +7,7 @@
 		<class>pk.home.inquirer.domain.security.UserAccount</class>
 		<class>pk.home.inquirer.domain.security.UserAuthority</class>
 		<class>pk.home.inquirer.domain.security.UserGroup</class>
+		<class>pk.home.inquirer.domain.Question</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/inquirer" />
 			<property name="javax.persistence.jdbc.user" value="inquirer" />
