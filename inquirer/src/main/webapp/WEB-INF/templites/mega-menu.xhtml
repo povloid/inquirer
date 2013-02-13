@@ -10,156 +10,15 @@
 <h:form>
 
 	<p:megaMenu style="margin-left: 50px">
-		<p:menuitem value="Мастер-панель" url="/mvc/op" icon="ui-icon home" />
-		<!-- 		<p:submenu label="TV" icon="ui-icon-check"> -->
-		<!-- 			<p:column> -->
-		<!-- 				<p:submenu label="TV.1"> -->
-		<!-- 					<p:menuitem value="TV.1.1" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.1.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="TV.2"> -->
-		<!-- 					<p:menuitem value="TV.2.1" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.2.2" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.2.3" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="TV.3"> -->
-		<!-- 					<p:menuitem value="TV.3.1" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.3.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 			</p:column> -->
-
-		<!-- 			<p:column> -->
-		<!-- 				<p:submenu label="TV.4"> -->
-		<!-- 					<p:menuitem value="TV.4.1" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.4.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="TV.5"> -->
-		<!-- 					<p:menuitem value="TV.5.1" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.5.2" url="#" /> -->
-		<!-- 					<p:menuitem value="TV.5.3" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 			</p:column> -->
-
-		<!-- 			<p:column> -->
-		<!-- 				<strong>Sopranos</strong> -->
-		<!-- 				<p:graphicImage value="/images/sopranos/sopranos1.jpg" width="200" /> -->
-		<!-- 			</p:column> -->
-		<!-- 		</p:submenu> -->
-
-		<!-- 		<p:submenu label="Sports" icon="ui-icon-document"> -->
-
-		<!-- 			<p:column> -->
-		<!-- 				<p:submenu label="Sports.1"> -->
-		<!-- 					<p:menuitem value="Sports.1.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.1.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="Sports.2"> -->
-		<!-- 					<p:menuitem value="Sports.2.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.2.2" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.2.3" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="Sports.3"> -->
-		<!-- 					<p:menuitem value="Sports.3.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.3.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 			</p:column> -->
-
-		<!-- 			<p:column> -->
-		<!-- 				<p:submenu label="Sports.4"> -->
-		<!-- 					<p:menuitem value="Sports.4.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.4.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="Sports.5"> -->
-		<!-- 					<p:menuitem value="Sports.5.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.5.2" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.5.3" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 			</p:column> -->
-		<!-- 			<p:column> -->
-		<!-- 				<p:submenu label="Sports.7"> -->
-		<!-- 					<p:menuitem value="Sports.7.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.7.2" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 				<p:submenu label="Sports.8"> -->
-		<!-- 					<p:menuitem value="Sports.8.1" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.8.2" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.8.3" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.8.4" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.8.5" url="#" /> -->
-		<!-- 					<p:menuitem value="Sports.8.6" url="#" /> -->
-		<!-- 				</p:submenu> -->
-		<!-- 			</p:column> -->
-		<!-- 		</p:submenu> -->
-
-		<sec:authorize ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_OP">
-			<p:submenu label="Операции" icon="ui-icon-pencil">
-
-				<p:column>
-					<sec:authorize ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_USER">
-						<p:submenu label="Информация">
-							<p:menuitem value="Ордера" icon="ui-icon addbk" url="/mvc/order" />
-						</p:submenu>
-					</sec:authorize>
-				</p:column>
-			</p:submenu>
-		</sec:authorize>
-
-		<sec:authorize
-			ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_DISPATCHER">
-			<p:submenu label="Диспетчеризация" icon="ui-icon-pencil">
-				<p:column>
-					<p:submenu label="План">
-						<p:menuitem value="Рейсы" icon="ui-icon addbk" url="/mvc/race" />
-					</p:submenu>
-				</p:column>
-			</p:submenu>
-		</sec:authorize>
-
-		<sec:authorize ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_RB">
+		<p:menuitem value="Домой" url="/mvc/op" icon="ui-icon home" />
+	
+		<sec:authorize ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_QUIRE_EDITOR">
 			<p:submenu label="Справочники" icon="ui-icon-pencil">
 				<p:column>
-
 					<sec:authorize
-						ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_RB_TRANSPORT">
-						<p:submenu label="Транспорт">
-							<p:menuitem value="Автобусы" icon="ui-icon addbk"
-								url="/mvc/buses" />
-							<p:menuitem value="Схемы" icon="ui-icon addbk" url="/mvc/schema" />
-							<p:menuitem value="Места" icon="ui-icon addbk" url="/mvc/seat" />
-							<p:menuitem value="Водители" icon="ui-icon addbk"
-								url="/mvc/driver" />
-							<p:menuitem value="Типы мест" icon="ui-icon addbk"
-								url="/mvc/seatType" />
-						</p:submenu>
-					</sec:authorize>
-					<sec:authorize
-						ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_RB_PATH">
-						<p:submenu label="Маршрут">
-							<p:menuitem value="Остановки" icon="ui-icon addbk"
-								url="/mvc/busStop" />
-							<p:menuitem value="Маршрут" icon="ui-icon addbk"
-								url="/mvc/busRoute" />
-						</p:submenu>
-					</sec:authorize>
-				</p:column>
-				<p:column>
-					<sec:authorize
-						ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_RB,ROLE_RB_CUSTOMER">
-						<p:submenu label="Справочники">
-							<p:menuitem value="Типы документов" icon="ui-icon addbk"
-								url="/mvc/documentType" />
-							<sec:authorize
-								ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_RB_CUSTOMER">
-								<p:menuitem value="Клиенты" icon="ui-icon addbk"
-									url="/mvc/customer" />
-							</sec:authorize>
-						</p:submenu>
-					</sec:authorize>
-					<sec:authorize
-						ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_RB_ORGANIZATION">
-						<p:submenu label="Организация">
-							<p:menuitem value="Отделения" icon="ui-icon addbk"
-								url="/mvc/division" />
+						ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_QUIRE_EDITOR">
+						<p:submenu label="Данные для опросов">
+							<p:menuitem value="Вопросы" icon="ui-icon addbk" url="/mvc/schema" />
 						</p:submenu>
 					</sec:authorize>
 				</p:column>
@@ -171,37 +30,6 @@
 			</p:submenu>
 		</sec:authorize>
 
-		<sec:authorize ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN,ROLE_REPORTS">
-			<p:submenu label="Отчеты" icon="ui-icon-pencil" >
-				<p:column colspan="2" style="width: 200px">
-					<sec:authorize ifAnyGranted="ROLE_REPORTS_DIVISION">
-						<p:submenu label="Отделения">
-							<sec:authorize ifAnyGranted="ROLE_REPORTS_DIVISION_BALANCE_F1">
-								<p:menuitem value="Отчет по опер. (ф1)"
-									icon="ui-icon docs16" url="/mvc/wfreport/division_balance_f1" />
-							</sec:authorize>
-						</p:submenu>
-					</sec:authorize>
-
-					<sec:authorize ifAnyGranted="ROLE_REPORTS_DRIVER">
-						<p:submenu label="Водитель">
-							<sec:authorize ifAnyGranted="ROLE_REPORTS_DRIVER_FORM1">
-								<p:menuitem value="Сп. пассаж. (ф1)" 
-									icon="ui-icon docs16" url="/mvc/wfreport/driver_form1" />
-							</sec:authorize>
-							<sec:authorize ifAnyGranted="ROLE_REPORTS_DRIVER_FORM2">
-								<p:menuitem value="Сп. пассаж. (ф2)" 
-									icon="ui-icon docs16" url="/mvc/wfreport/driver_form2" />
-							</sec:authorize>
-						</p:submenu>
-					</sec:authorize>
-
-
-				</p:column>
-				<p:column>
-				</p:column>
-			</p:submenu>
-		</sec:authorize>
 
 		<sec:authorize ifAnyGranted="ROLE_SUPERUSER,ROLE_ADMIN">
 			<p:submenu label="Управление" icon="ui-icon-contact">

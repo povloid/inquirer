@@ -7,9 +7,9 @@ package pk.home.inquirer.domain.security;
  * 
  */
 public enum UserAuthoritys {
-	ROLE_SUPERUSER, // Суперпользователь
-	ROLE_ADMIN, // Администратор
-
-	ROLE_USER,
-	ROLE_VIEWER, // Просмотр
+	ROLE_SUPERUSER, 	// Суперпользователь
+	ROLE_ADMIN, 		// Администратор
+	ROLE_QUIRE_EDITOR, 	// Редактор вопросов
+	ROLE_USER,			// Пользователь
+	ROLE_VIEWER, 		// Просмотр
 }
