@@ -7,11 +7,11 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import pk.home.inquirer.domain.Answer;
 import pk.home.inquirer.domain.Inquirer;
 import pk.home.inquirer.domain.Question;
 import pk.home.inquirer.service.InquirerService;
 import pk.home.inquirer.service.UsersAnswerService;
+import pk.home.inquirer.web.jsf.security.TerminalCurrentUser;
 import pk.home.libs.combine.web.jsf.flow.AWFWizart;
 
 public class UserAnswersFormWFWizControl extends AWFWizart implements
@@ -41,6 +41,10 @@ public class UserAnswersFormWFWizControl extends AWFWizart implements
 		return (UsersAnswerService) findBean("usersAnswerService");
 	}
 	
+	public TerminalCurrentUser getTerminalCurrentUser() {
+		return (TerminalCurrentUser) findBean("terminalCurrentUser");
+	}
+	
 	
 
 	@Override
@@ -65,7 +69,9 @@ public class UserAnswersFormWFWizControl extends AWFWizart implements
 			return super.next();
 		} else {
 			try {
-				// TODO: Сделать формирование результата
+				// Сделать формирование результата
+				getUsersAnswerService().createForm(getTerminalCurrentUser().getUserAccount(), 
+						selectedInquirer, qmap);
 
 			} catch (Exception e) {
 				e.printStackTrace();

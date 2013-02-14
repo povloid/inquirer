@@ -1,6 +1,7 @@
 package pk.home.inquirer.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -9,15 +10,21 @@ import javax.persistence.metamodel.SingularAttribute;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import pk.home.libs.combine.dao.ABaseDAO;
 import pk.home.libs.combine.dao.ABaseDAO.SortOrderType;
 import pk.home.libs.combine.service.ABaseService;
+import pk.home.inquirer.dao.AnswerDAO;
 import pk.home.inquirer.dao.UsersAnswerDAO;
+import pk.home.inquirer.domain.Answer;
 import pk.home.inquirer.domain.Inquirer;
+import pk.home.inquirer.domain.Question;
 import pk.home.inquirer.domain.UsersAnswer;
 import pk.home.inquirer.domain.UsersAnswer_;
+import pk.home.inquirer.domain.security.UserAccount;
 
 /**
  * Service class for entity class: UsersAnswer Users Answer - ответ пользователя
@@ -29,9 +36,36 @@ public class UsersAnswerService extends ABaseService<UsersAnswer> {
 	@Autowired
 	private UsersAnswerDAO usersAnswerDAO;
 
+	@Autowired
+	private AnswerDAO answerDAO;
+
 	@Override
 	public ABaseDAO<UsersAnswer> getAbstractBasicDAO() {
 		return usersAnswerDAO;
+	}
+
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void createForm(UserAccount ua, Inquirer inq, Map<Long, Long> qmap)
+			throws Exception {
+
+		for (Question q : inq.getQuestions()) {
+
+			Long answerId = qmap.get(q.getId());
+
+			if (answerId != null) {
+				Answer ans = answerDAO.find(answerId);
+
+				UsersAnswer usersAnswer = new UsersAnswer();
+
+				usersAnswer.setUserAccount(ua);
+				usersAnswer.setInquirer(inq);
+				usersAnswer.setQuestion(q);
+				usersAnswer.setAnswer(ans);
+
+				usersAnswerDAO.persist(usersAnswer);
+			}
+		}
 	}
 
 	@Transactional(readOnly = true)

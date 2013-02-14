@@ -32,7 +32,7 @@
 		<transition on="back" to="answerForm"></transition>
 		<transition on="next" to="answerForm"></transition>
 		
-		<transition on="error" to="questionEdit"></transition>
+		<transition on="error" to="answerForm"></transition>
 	</view-state>
 
 	
