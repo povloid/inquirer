@@ -20,7 +20,7 @@ public class InquirerEditWFControl extends AWFControl<Inquirer, Long> implements
 
 	@Override
 	public Inquirer findEdited(Long id) throws Exception {
-		return getInquirerService().find(id);
+		return getInquirerService().findWithLazy(id);
 	}
 
 	@Override

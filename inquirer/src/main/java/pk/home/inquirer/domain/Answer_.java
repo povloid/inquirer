@@ -14,4 +14,5 @@ public class Answer_ {
 	public static volatile SingularAttribute<Answer, Long> id;
 	public static volatile SingularAttribute<Answer, String> keyName;
 	public static volatile SingularAttribute<Answer, String> description;
+	public static volatile SingularAttribute<Answer, Question> question;
 }

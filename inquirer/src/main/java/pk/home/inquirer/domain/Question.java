@@ -43,6 +43,10 @@ public class Question implements Serializable {
 	@OrderColumn(name = "orId")
 	private List<Answer> answers;
 
+	@ManyToOne
+	private Inquirer inquirer;
+	
+	
 	public Question() {
 		super();
 	}
@@ -86,6 +90,14 @@ public class Question implements Serializable {
 
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+
+	public Inquirer getInquirer() {
+		return inquirer;
+	}
+
+	public void setInquirer(Inquirer inquirer) {
+		this.inquirer = inquirer;
 	}
 
 	@Override
