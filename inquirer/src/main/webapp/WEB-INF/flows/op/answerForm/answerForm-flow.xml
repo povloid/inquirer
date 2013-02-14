@@ -7,22 +7,35 @@
 
 	<secured attributes="ROLE_USER" />
 	
-	<!-- var name="questionEditWFControl" class="pk.home.inquirer.web.jsf.webflow.QuestionEditWFControl" / -->
+	<var name="userAnswersFormWFWizControl" class="pk.home.inquirer.web.jsf.webflow.UserAnswersFormWFWizControl" />
 	
 
 	<input name="id" type="java.lang.Long" />
 	<input name="retUrl" type="java.lang.String" />
+	
+	
+	<on-start>
+		<evaluate expression="userAnswersFormWFWizControl.findInquirer(id)"/>
+	</on-start>
 
 
 	<view-state id="answerForm">
+		<on-entry>
+			<evaluate expression="userAnswersFormWFWizControl.init()" />
+		</on-entry>
 		<transition on="findRaces" to="findRaces" />
 		<transition on="return" to="return" />
 		
 		<transition on="end" to="end"></transition>
+		<transition on="close" to="end" />
+		
+		<transition on="back" to="answerForm"></transition>
+		<transition on="next" to="answerForm"></transition>
 		
 		<transition on="error" to="questionEdit"></transition>
 	</view-state>
 
+	
 
 	<decision-state id="end">
 		<if test="retUrl == null" then="end0" else="end1" />

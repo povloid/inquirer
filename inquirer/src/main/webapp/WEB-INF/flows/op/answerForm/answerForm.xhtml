@@ -36,9 +36,25 @@
 			
 			<p:messages showDetail="true" autoUpdate="true" />
 
-					#{id}
+					#{userAnswersFormWFWizControl.index}/#{userAnswersFormWFWizControl.selectedInquirer.questions.size()}
+					
+					<br/>
+					#{userAnswersFormWFWizControl.selectedInquirer.keyName}
 
 
+			<br/>
+			
+			#{userAnswersFormWFWizControl.question}
+			
+			
+			
+			
+			
+			<pk:pk_wiz_buttons_wf close_action="#{userAnswersFormWFWizControl.close}"
+					back_action="#{userAnswersFormWFWizControl.back}"
+					next_action="#{userAnswersFormWFWizControl.next}" 
+					step="#{userAnswersFormWFWizControl.index}" 
+					lstep="#{userAnswersFormWFWizControl.selectedInquirer.questions.size()}" />
 
 		</h:form>
 
