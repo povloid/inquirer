@@ -63,7 +63,7 @@
 			<set name="mode" value="'edit'" type="java.lang.String" />
 			<set name="id" value="questionEditWFControl.edited.id" type="java.lang.Long" />
 		</transition>
-		<transition on="editComplite" to="questionEdit" />
+		<transition on="editComplite" to="idAnalize" />
 		<transition on="editCompliteAndClose" to="end" />
 		<transition on="delComplite" to="end"></transition>
 		

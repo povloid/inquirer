@@ -38,7 +38,7 @@
 
 			<p:growl id="msgs" showDetail="true" />
 
-			<pk:pk_add_button_wf add_action="#{questionViewControl.add}"/>
+			<!--  pk:pk_add_button_wf add_action="#{questionViewControl.add}"/ -->
 
 			<p:dataTable id="table1" var="row" 
 				value="#{questionViewControl.dataModel}" widgetVar="dataTable1"
@@ -66,8 +66,8 @@
 				</p:column>
 
 				<p:column>
-					<f:facet name="Вопрос">
-						<pk:pktsortorder field="keyName"
+					<f:facet name="header">
+						<pk:pktsortorder field="keyName" caption="Вопрос"
 							csortOrder="#{questionViewControl.csortOrder}"
 							csortField="#{questionViewControl.csortField}" />
 					</f:facet>

@@ -11,7 +11,7 @@
 <ui:composition template="/WEB-INF/templites/templite.xhtml">
 	<ui:define name="title">
 		<pk:pk_dialog_caption_text add_view="#{add}" edit_view="#{edit}"
-			del_view="#{del}" caption="опросника" />
+			del_view="#{del}" caption="опросник" />
 	</ui:define>
 
 	<ui:define name="header_icon">
@@ -21,7 +21,7 @@
 
 	<ui:define name="header">
 		<pk:pk_dialog_caption_text add_view="#{add}" edit_view="#{edit}"
-			del_view="#{del}" caption="опросника" />
+			del_view="#{del}" caption="опросник" />
 	</ui:define>
 
 	<ui:define name="content">
@@ -36,12 +36,12 @@
 					<h:outputText value="#{inquirerEditWFControl.edited.id}"
 						rendered="#{inquirerEditWFControl.edited.id != null}" />
 
-					<h:outputLabel value="KeyName:" />
+					<h:outputLabel value="Название опросника:" />
 					<p:inputText value="#{inquirerEditWFControl.edited.keyName}"
 						title="Username" readonly="#{del}" required="true"
 						requiredMessage="The keyName field is required." />
 
-					<h:outputLabel value="Description:" />
+					<h:outputLabel value="Описание:" />
 					<p:inputTextarea readonly="#{del}"
 						value="#{inquirerEditWFControl.edited.description}"
 						style="width:300px;height:100px;" title="Description" />
@@ -81,7 +81,7 @@
 
 				<p:growl id="msgs" showDetail="true" />
 
-				<pk:pk_add_button_wf add_action="#{questionViewControl.add}" />
+				
 
 				<p:dataTable id="table1" var="row"
 					value="#{questionViewControl.dataModel}" widgetVar="dataTable1"
@@ -109,8 +109,8 @@
 					</p:column>
 
 					<p:column>
-						<f:facet name="Вопрос">
-							<pk:pktsortorder field="keyName"
+						<f:facet name="header">
+							<pk:pktsortorder field="keyName" caption="Вопрос"
 								csortOrder="#{questionViewControl.csortOrder}"
 								csortField="#{questionViewControl.csortField}" />
 						</f:facet>
@@ -141,6 +141,9 @@
 
 
 				</p:dataTable>
+				
+				
+				<pk:pk_add_button_wf add_action="#{questionViewControl.add}" />
 
 
 				<p:dialog header="Row Detail" widgetVar="rowDitailDialog"
