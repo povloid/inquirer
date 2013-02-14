@@ -1,6 +1,8 @@
 package pk.home.inquirer.web.jsf.webflow;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -23,6 +25,8 @@ public class UserAnswersFormWFWizControl extends AWFWizart implements
 	private int index = 1;
 	private Question question;
 	private Long answerId;
+	private Map<Long,Long> qmap = new HashMap<>();
+	
 
 	public void findInquirer(Long id) throws Exception {
 		selectedInquirer = getInquirerService().findWithLazy(id);
@@ -40,7 +44,10 @@ public class UserAnswersFormWFWizControl extends AWFWizart implements
 	public void initQuestion() throws Exception {
 		if (selectedInquirer != null && selectedInquirer.getQuestions() != null
 				&& selectedInquirer.getQuestions().size() > 0)
+		{
 			question = selectedInquirer.getQuestions().get(index - 1);
+			answerId = qmap.get(question.getId());
+		}	
 		else
 			question = null;
 	}
@@ -69,11 +76,15 @@ public class UserAnswersFormWFWizControl extends AWFWizart implements
 
 	@Override
 	protected void nextImpl() throws Exception {
+		qmap.put(question.getId(), answerId);
+		
 		++index;
 	}
 
 	@Override
 	public void backImpl() {
+		qmap.put(question.getId(), answerId);
+		
 		--index;
 	}
 
