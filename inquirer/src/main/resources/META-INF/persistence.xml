@@ -10,6 +10,7 @@
 		<class>pk.home.inquirer.domain.Question</class>
 		<class>pk.home.inquirer.domain.Answer</class>
 		<class>pk.home.inquirer.domain.Inquirer</class>
+		<class>pk.home.inquirer.domain.UsersAnswer</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/inquirer" />
 			<property name="javax.persistence.jdbc.user" value="inquirer" />
