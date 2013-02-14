@@ -10,6 +10,7 @@
 	<var name="questionEditWFControl" class="pk.home.inquirer.web.jsf.webflow.QuestionEditWFControl" />
 
 	<input name="id" type="java.lang.Long" />
+	<input name="inquirerId" type="java.lang.Long" />
 	<input name="mode" required="true" type="java.lang.String" />
 	<input name="retUrl" type="java.lang.String" />
 
@@ -25,9 +26,10 @@
 	</decision-state>
 
 	<action-state id="newEdited">
-		<evaluate expression="questionEditWFControl.newEdited()"
+		<evaluate expression="questionEditWFControl.newEdited(inquirerId)"
 			result="questionEditWFControl.edited" />
-		<transition to="addEditDel"></transition>
+		<transition to="addEditDel">
+		</transition>
 	</action-state>
 
 	<action-state id="findEdited">

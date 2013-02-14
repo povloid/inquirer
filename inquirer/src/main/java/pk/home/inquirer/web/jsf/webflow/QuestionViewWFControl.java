@@ -40,7 +40,7 @@ public class QuestionViewWFControl extends AWFBaseLazyLoadTableView<Question>
 		} else if (csortField != null && csortField.equals("keyName")) {
 			orderByAttribute = Question_.keyName;
 		}
-
+		
 		if (inquirerId != null && inquirerId > 0) {
 			dataModel = getQuestionService().getAllEntities(
 					getInquirerService().find(inquirerId), (page - 1) * rows,
@@ -71,7 +71,7 @@ public class QuestionViewWFControl extends AWFBaseLazyLoadTableView<Question>
 		return "del";
 	}
 
-	public Long getInquirerId() {
+	public Long getInquirerId() {		
 		return inquirerId;
 	}
 

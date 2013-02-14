@@ -34,8 +34,9 @@
 	<action-state id="findEdited">
 		<evaluate expression="inquirerEditWFControl.findEdited(id)"
 			result="inquirerEditWFControl.edited" />
-
-		<transition to="addEditDel"></transition>
+		<transition to="addEditDel">
+			<evaluate expression="id" result="questionViewControl.inquirerId" />
+		</transition>
 	</action-state>
 
 
@@ -95,6 +96,7 @@
 	<subflow-state id="op" subflow="question/edit">
 		<input name="mode" value="modes" />
 		<input name="id" value="ids" />
+		<input name="inquirerId" value="id"/>
 
 		<transition to="inquirerEdit" />
 	</subflow-state>
