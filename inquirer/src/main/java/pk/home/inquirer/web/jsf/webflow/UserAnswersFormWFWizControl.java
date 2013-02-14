@@ -11,6 +11,7 @@ import pk.home.inquirer.domain.Answer;
 import pk.home.inquirer.domain.Inquirer;
 import pk.home.inquirer.domain.Question;
 import pk.home.inquirer.service.InquirerService;
+import pk.home.inquirer.service.UsersAnswerService;
 import pk.home.libs.combine.web.jsf.flow.AWFWizart;
 
 public class UserAnswersFormWFWizControl extends AWFWizart implements
@@ -35,6 +36,12 @@ public class UserAnswersFormWFWizControl extends AWFWizart implements
 	public InquirerService getInquirerService() {
 		return (InquirerService) findBean("inquirerService");
 	}
+	
+	public UsersAnswerService getUsersAnswerService() {
+		return (UsersAnswerService) findBean("usersAnswerService");
+	}
+	
+	
 
 	@Override
 	protected void init0() throws Exception {

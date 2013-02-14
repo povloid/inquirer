@@ -16,5 +16,6 @@ public class UsersAnswer_ {
 	public static volatile SingularAttribute<UsersAnswer, String> description;
 	public static volatile SingularAttribute<UsersAnswer, UserAccount> userAccount;
 	public static volatile SingularAttribute<UsersAnswer, Question> question;
+	public static volatile SingularAttribute<UsersAnswer, Inquirer> inquirer;
 	public static volatile SingularAttribute<UsersAnswer, Answer> answer;
 }
