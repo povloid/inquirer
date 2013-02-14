@@ -10,7 +10,7 @@
 
 <ui:composition template="/WEB-INF/templites/templite.xhtml">
 	<ui:define name="title">
-        Форма ответа на вопрос
+        Тема опроса: #{userAnswersFormWFWizControl.selectedInquirer.keyName} Вопрос: #{userAnswersFormWFWizControl.index} из #{userAnswersFormWFWizControl.selectedInquirer.questions.size()}   
     </ui:define>
 
 	<ui:define name="header_icon">
@@ -18,8 +18,15 @@
 	</ui:define>
 
 	<ui:define name="header">
-         Форма ответа на вопрос
-    </ui:define>
+		<table width="100%">
+			<tr>
+				<td width="80%">Тема опроса:
+					#{userAnswersFormWFWizControl.selectedInquirer.keyName}</td>
+				<td>Вопрос: #{userAnswersFormWFWizControl.index} из
+					#{userAnswersFormWFWizControl.selectedInquirer.questions.size()}</td>
+			</tr>
+		</table>
+	</ui:define>
 
 	<ui:define name="content">
 		<style type="text/css">
@@ -35,20 +42,21 @@
 			<p:growl id="msgs" showDetail="true" />
 			
 			<p:messages showDetail="true" autoUpdate="true" />
-
-					#{userAnswersFormWFWizControl.index}/#{userAnswersFormWFWizControl.selectedInquirer.questions.size()}
 					
-					<br/>
-					#{userAnswersFormWFWizControl.selectedInquirer.keyName}
-
+					
+			<br/>
+			
+			<h3>#{userAnswersFormWFWizControl.question.qText}</h3>
 
 			<br/>
 			
-			#{userAnswersFormWFWizControl.question}
+			<h:outputText value="Ответ: " />  
+        	<p:selectOneRadio id="options" value="#{userAnswersFormWFWizControl.answerId}" layout="pageDirection">
+        		 <f:selectItems value="#{userAnswersFormWFWizControl.question.answers}" var="answer" itemLabel="#{answer.keyName}" itemValue="#{answer.id}" /> 
+        	</p:selectOneRadio>  
 			
-			
-			
-			
+			<br/>
+			<br/>
 			
 			<pk:pk_wiz_buttons_wf close_action="#{userAnswersFormWFWizControl.close}"
 					back_action="#{userAnswersFormWFWizControl.back}"
