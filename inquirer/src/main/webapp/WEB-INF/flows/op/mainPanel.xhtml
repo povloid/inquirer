@@ -31,30 +31,32 @@
 
 
 		<f:metadata>
-			<f:event type="preRenderView" listener="#{questionViewControl.init}" />
-			<f:viewParam name="ppage" value="#{questionViewControl.page}" />
-			<f:viewParam name="prows" value="#{questionViewControl.prows}" />
+			<f:event type="preRenderView"
+				listener="#{inquirerViewControl.init}" />
+			<f:viewParam name="ppage" value="#{inquirerViewControl.page}" />
+			<f:viewParam name="prows" value="#{inquirerViewControl.prows}" />
 			<f:viewParam name="pcsortField"
-				value="#{questionViewControl.pcsortField}" />
+				value="#{inquirerViewControl.pcsortField}" />
 			<f:viewParam name="pcsortOrder"
-				value="#{questionViewControl.pcsortOrder}" />
+				value="#{inquirerViewControl.pcsortOrder}" />
 		</f:metadata>
 
 		<h:form id="form">
 
 			<p:growl id="msgs" showDetail="true" />
 
-			<p:dataTable id="table1" var="row"
-				value="#{questionViewControl.dataModel}" widgetVar="dataTable1"
+
+			<p:dataTable id="table1" var="row" 
+				value="#{inquirerViewControl.dataModel}" widgetVar="dataTable1"
 				emptyMessage="Таблица пустая">
 
 
 				<f:facet name="header">
-					<pk:pkpaginator pages="#{questionViewControl.allPagesCount}"
-						count="#{questionViewControl.allRowsCount}"
-						page="#{questionViewControl.page}"
-						buttons="#{questionViewControl.oPButtons}"
-						rows="#{questionViewControl.rows}" />
+					<pk:pkpaginator pages="#{inquirerViewControl.allPagesCount}"
+						count="#{inquirerViewControl.allRowsCount}"
+						page="#{inquirerViewControl.page}"
+						buttons="#{inquirerViewControl.oPButtons}"
+						rows="#{inquirerViewControl.rows}" />
 
 				</f:facet>
 
@@ -63,43 +65,79 @@
 				<p:column>
 					<f:facet name="header">
 						<pk:pktsortorder field="id"
-							csortOrder="#{questionViewControl.csortOrder}"
-							csortField="#{questionViewControl.csortField}" />
+							csortOrder="#{inquirerViewControl.csortOrder}"
+							csortField="#{inquirerViewControl.csortField}" />
 					</f:facet>
 					<h:outputText value="#{row.id}" />
 				</p:column>
 
 				<p:column>
-					<f:facet name="Вопрос">
+					<f:facet name="header">
 						<pk:pktsortorder field="keyName"
-							csortOrder="#{questionViewControl.csortOrder}"
-							csortField="#{questionViewControl.csortField}" />
+							csortOrder="#{inquirerViewControl.csortOrder}"
+							csortField="#{inquirerViewControl.csortField}" />
 					</f:facet>
 					<h:outputText value="#{row.keyName}" />
 				</p:column>
 
-				<p:column headerText="Пометки">
+				<p:column headerText="Описание" >
 					<h:outputText value="#{row.description}" />
 				</p:column>
 
-				<p:column headerText="Действие"
-					style="width: 100px; text-align: center;">
+				<p:column headerText="Действие" style="width: 100px; text-align: center;">
 					<p:commandButton value="Ответить" ajax="false" action="goToAnswer">
-						<f:setPropertyActionListener value="#{row.id}" target="#{flowScope.selectedId}" />
-					</p:commandButton>
+ 						<f:setPropertyActionListener value="#{row.id}" target="#{flowScope.selectedId}" />
+ 					</p:commandButton>
 				</p:column>
 
 
 				<f:facet name="footer">
-					<pk:pkpaginator pages="#{questionViewControl.allPagesCount}"
-						count="#{questionViewControl.allRowsCount}"
-						page="#{questionViewControl.page}"
-						buttons="#{questionViewControl.oPButtons}"
-						rows="#{questionViewControl.rows}" />
+					<pk:pkpaginator pages="#{inquirerViewControl.allPagesCount}"
+						count="#{inquirerViewControl.allRowsCount}"
+						page="#{inquirerViewControl.page}"
+						buttons="#{inquirerViewControl.oPButtons}"
+						rows="#{inquirerViewControl.rows}" />
 				</f:facet>
 
 
 			</p:dataTable>
+
+
+			<p:dialog header="Row Detail" widgetVar="rowDitailDialog"
+				resizable="false" id="rowDitailDialog" showEffect="fade"
+				hideEffect="explode" modal="true">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4"
+					style="margin:0 auto;">
+
+					<f:facet name="header">
+
+					</f:facet>
+
+					<h:outputText value="id:" />
+					<h:outputText value="#{inquirerViewControl.selected.id}"
+						style="font-weight:bold" />
+
+					<h:outputText value="KeyName:" />
+					<h:outputText value="#{inquirerViewControl.selected.keyName}"
+						style="font-weight:bold" />
+
+
+					<h:outputText value="Description:" />
+					<p:scrollPanel style="width:350px;height:200px" scrollMode="native">
+						<h:outputText
+							value="#{inquirerViewControl.selected.description}"
+							escape="false" />
+					</p:scrollPanel>
+
+					<f:facet name="footer">
+						<p:outputPanel layout="block" style="text-align:right">
+							<p:commandButton value="Close" onclick="rowDitailDialog.hide()"
+								type="button" icon="ui-icon ui-icon-close" />
+						</p:outputPanel>
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog>
 
 
 

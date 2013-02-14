@@ -7,7 +7,7 @@
 
 	<secured attributes="ROLE_USER" />
 	
-	<var name="questionViewControl" class="pk.home.inquirer.web.jsf.webflow.QuestionViewWFControl" />
+	<var name="inquirerViewControl" class="pk.home.inquirer.web.jsf.webflow.InquirerViewWFControl" />
 	
 	<on-start>
 		<set name="flowScope.selectedId" value="0" type="long" />

@@ -3,7 +3,6 @@ package pk.home.inquirer.web.jsf.webflow;
 import java.io.Serializable;
 
 import pk.home.inquirer.domain.Answer;
-import pk.home.inquirer.domain.Inquirer;
 import pk.home.inquirer.domain.Question;
 import pk.home.inquirer.service.InquirerService;
 import pk.home.inquirer.service.QuestionService;
