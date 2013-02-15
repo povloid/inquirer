@@ -6,7 +6,9 @@ import javax.persistence.metamodel.SingularAttribute;
 
 import pk.home.inquirer.domain.Inquirer;
 import pk.home.inquirer.domain.Inquirer_;
+import pk.home.inquirer.domain.Rating;
 import pk.home.inquirer.service.InquirerService;
+import pk.home.inquirer.service.RatingService;
 import pk.home.inquirer.web.jsf.security.TerminalCurrentUser;
 import pk.home.libs.combine.web.jsf.flow.AWFBaseLazyLoadTableView;
 
@@ -21,6 +23,8 @@ public class InquirerViewWFControl extends AWFBaseLazyLoadTableView<Inquirer> im
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private int rating;
 
 	public InquirerService getInquirerService() {
 		return (InquirerService) findBean("inquirerService");
@@ -30,6 +34,10 @@ public class InquirerViewWFControl extends AWFBaseLazyLoadTableView<Inquirer> im
 		return (TerminalCurrentUser) findBean("terminalCurrentUser");
 	}
 	
+	
+	public RatingService getRatingService() {
+		return (RatingService) findBean("ratingService");
+	}
 	
 	
 	@Override
@@ -53,6 +61,19 @@ public class InquirerViewWFControl extends AWFBaseLazyLoadTableView<Inquirer> im
 		return getInquirerService().count();
 	}
 	
+	public void setRating() throws Exception{
+		
+		Rating r = new Rating();
+		
+		r.setInquirer(selected);
+		r.setUserAccount(getTerminalCurrentUser().getUserAccount());
+		r.setVal(rating);
+		
+		getRatingService().persist(r);
+		
+	}
+	
+	
 	
 	public String add(){
 		return "add";
@@ -65,5 +86,18 @@ public class InquirerViewWFControl extends AWFBaseLazyLoadTableView<Inquirer> im
 	public String del(){
 		return "del";
 	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
+	
+	
+	
+	
 	
 }

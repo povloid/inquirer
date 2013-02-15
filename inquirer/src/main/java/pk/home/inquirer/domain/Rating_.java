@@ -17,4 +17,5 @@ public class Rating_ {
 	public static volatile SingularAttribute<Rating, String> description;
 	public static volatile SingularAttribute<Rating, UserAccount> userAccount;
 	public static volatile SingularAttribute<Rating, Inquirer> inquirer;
+	public static volatile SingularAttribute<Rating, Integer> val;
 }

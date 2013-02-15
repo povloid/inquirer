@@ -1,9 +1,7 @@
 package pk.home.inquirer.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.TypedQuery;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import pk.home.libs.combine.dao.ABaseDAO;
-import pk.home.libs.combine.dao.ABaseDAO.SortOrderType;
-import pk.home.libs.combine.service.ABaseService;
 import pk.home.inquirer.dao.InquirerDAO;
 import pk.home.inquirer.domain.Inquirer;
 import pk.home.inquirer.domain.Question;
 import pk.home.inquirer.domain.security.UserAccount;
+import pk.home.libs.combine.dao.ABaseDAO;
+import pk.home.libs.combine.dao.ABaseDAO.SortOrderType;
+import pk.home.libs.combine.service.ABaseService;
 
 /**
  * Service class for entity class: Inquirer inquirer - опрос
@@ -28,6 +26,10 @@ public class InquirerService extends ABaseService<Inquirer> {
 
 	@Autowired
 	private InquirerDAO inquirerDAO;
+	
+	@Autowired
+	private RatingService ratingService;
+	
 	
 	@Autowired
 	private UsersAnswerService usersAnswerService;
@@ -72,9 +74,11 @@ public class InquirerService extends ABaseService<Inquirer> {
 		
 		for(Inquirer i: list){
 			
-			Object[] m = new Object[2];
+			Object[] m = new Object[3];
 			
 			m[0] = usersAnswerService.isHaveUserAnswer(i, ua);
+			m[1] = ratingService.isHaveUserAnswer(i, ua);
+			m[2] = ratingService.getAVGRating(i);
 			
 			i.setAddInfo(m);
 		}
