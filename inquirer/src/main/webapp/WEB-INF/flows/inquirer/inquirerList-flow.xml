@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 	start-state="inquirerList">
 
-	<secured attributes="ROLE_USER" />
+	<secured attributes="ROLE_QUIRE_EDITOR" />
 
 	<var name="inquirerViewControl" class="pk.home.inquirer.web.jsf.webflow.InquirerViewWFControl" />
 
