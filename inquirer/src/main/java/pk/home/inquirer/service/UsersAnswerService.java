@@ -119,4 +119,23 @@ public class UsersAnswerService extends ABaseService<UsersAnswer> {
 		return (Long) usersAnswerDAO.getSinleResult(cq);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public boolean isHaveUserAnswer(Inquirer inquirer, UserAccount ua)
+			throws Exception {
+
+		CriteriaBuilder cb = usersAnswerDAO.getEntityManager()
+				.getCriteriaBuilder();
+		CriteriaQuery<Object> cq = usersAnswerDAO.getEntityManager()
+				.getCriteriaBuilder().createQuery();
+		Root<UsersAnswer> rt = cq.from(UsersAnswer.class);
+
+		cq.where(cb.and(cb.equal(rt.get(UsersAnswer_.inquirer), inquirer),
+				cb.equal(rt.get(UsersAnswer_.userAccount), ua)));
+
+		cq.select(usersAnswerDAO.getEntityManager().getCriteriaBuilder()
+				.max(rt.get(UsersAnswer_.id)));
+
+		return (Long) usersAnswerDAO.getSinleResult(cq) != null;
+	}
+
 }

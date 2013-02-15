@@ -19,7 +19,8 @@ import pk.home.inquirer.domain.security.UserAccount;
 		@UniqueConstraint(columnNames = { "useraccount_id", "inquirer_id", "question_id" }) })
 @NamedQueries({
 		@NamedQuery(name = "UsersAnswer.findAll", query = "select a from UsersAnswer a order by a.id"),
-		@NamedQuery(name = "UsersAnswer.findByPrimaryKey", query = "select a from UsersAnswer a where a.id = ?1")})
+		@NamedQuery(name = "UsersAnswer.findByPrimaryKey", query = "select a from UsersAnswer a where a.id = ?1"),
+		@NamedQuery(name = "UsersAnswer.findByInquirerUserAccount", query = "select a from UsersAnswer a where a.inquirer = ?1 and a.userAccount = ?2")})
 public class UsersAnswer implements Serializable {
 
 	/**

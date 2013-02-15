@@ -73,7 +73,7 @@
 
 				<p:column>
 					<f:facet name="header">
-						<pk:pktsortorder field="keyName"
+						<pk:pktsortorder field="keyName" caption="Тема опроса"
 							csortOrder="#{inquirerViewControl.csortOrder}"
 							csortField="#{inquirerViewControl.csortField}" />
 					</f:facet>
@@ -85,9 +85,12 @@
 				</p:column>
 
 				<p:column headerText="Действие" style="width: 100px; text-align: center;">
-					<p:commandButton value="Ответить" ajax="false" action="goToAnswer">
+				
+					<p:commandButton value="Ответить" ajax="false" action="goToAnswer" rendered="#{not row.addInfo[0]}">
  						<f:setPropertyActionListener value="#{row.id}" target="#{flowScope.selectedId}" />
  					</p:commandButton>
+ 					
+ 					<h:graphicImage rendered="#{row.addInfo[0]}" value="/images/icons/flag_24.png" />
 				</p:column>
 
 

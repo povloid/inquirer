@@ -7,6 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import pk.home.inquirer.domain.Inquirer;
 import pk.home.inquirer.domain.Inquirer_;
 import pk.home.inquirer.service.InquirerService;
+import pk.home.inquirer.web.jsf.security.TerminalCurrentUser;
 import pk.home.libs.combine.web.jsf.flow.AWFBaseLazyLoadTableView;
 
 /**
@@ -25,6 +26,12 @@ public class InquirerViewWFControl extends AWFBaseLazyLoadTableView<Inquirer> im
 		return (InquirerService) findBean("inquirerService");
 	}
 
+	public TerminalCurrentUser getTerminalCurrentUser() {
+		return (TerminalCurrentUser) findBean("terminalCurrentUser");
+	}
+	
+	
+	
 	@Override
 	protected void aInit() throws Exception {
 		
@@ -35,7 +42,9 @@ public class InquirerViewWFControl extends AWFBaseLazyLoadTableView<Inquirer> im
 			orderByAttribute = Inquirer_.keyName;
 		}
 
-		dataModel = getInquirerService().getAllEntities((page - 1) * rows, rows,
+		dataModel = getInquirerService().getAllEntitiesWithAddInfo(
+				getTerminalCurrentUser().getUserAccount()
+				, (page - 1) * rows, rows,
 				orderByAttribute, getSortOrderType());
 	}
 

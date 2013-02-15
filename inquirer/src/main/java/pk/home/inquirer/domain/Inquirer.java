@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Table(schema = "public", name = "Inquirer")
 @NamedQueries({
 		@NamedQuery(name = "Inquirer.findAll", query = "select a from Inquirer a order by a.id"),
-		@NamedQuery(name = "Inquirer.findByPrimaryKey", query = "select a from Inquirer a where a.id = ?1") })
+		@NamedQuery(name = "Inquirer.findByPrimaryKey", query = "select a from Inquirer a where a.id = ?1")})
 public class Inquirer implements Serializable {
 
 	/**
@@ -37,6 +38,9 @@ public class Inquirer implements Serializable {
 	private List<Question> questions;
 
 	private String description;
+	
+	@Transient
+	private Object addInfo;
 
 	public Inquirer() {
 		super();
@@ -73,6 +77,14 @@ public class Inquirer implements Serializable {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+	
+	public Object getAddInfo() {
+		return addInfo;
+	}
+
+	public void setAddInfo(Object addInfo) {
+		this.addInfo = addInfo;
 	}
 
 	@Override
