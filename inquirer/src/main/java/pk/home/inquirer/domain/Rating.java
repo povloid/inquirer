@@ -6,6 +6,8 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Index;
+
 import pk.home.inquirer.domain.security.UserAccount;
 
 /**
@@ -13,7 +15,8 @@ import pk.home.inquirer.domain.security.UserAccount;
  * 
  */
 @Entity
-@Table(schema = "public", name = "Rating")
+@Table(schema = "public", name = "Rating", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "useraccount_id", "inquirer_id"}) })
 @NamedQueries({
 		@NamedQuery(name = "Rating.findAll", query = "select a from Rating a order by a.id"),
 		@NamedQuery(name = "Rating.findByPrimaryKey", query = "select a from Rating a where a.id = ?1") })
@@ -30,9 +33,11 @@ public class Rating implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	private Inquirer Inquirer;
+	@Index(name = "rating_idx1")
+	private Inquirer inquirer;
 
 	@ManyToOne
+	@Index(name = "rating_idx1")
 	private UserAccount userAccount;
 
 	@NotNull
@@ -60,13 +65,13 @@ public class Rating implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	public Inquirer getInquirer() {
-		return Inquirer;
+		return inquirer;
 	}
 
 	public void setInquirer(Inquirer inquirer) {
-		Inquirer = inquirer;
+		this.inquirer = inquirer;
 	}
 
 	public UserAccount getUserAccount() {
