@@ -91,7 +91,8 @@
  					</p:commandButton>
  					
  					<h:graphicImage rendered="#{row.addInfo[0]}" value="/images/icons/flag_24.png" />
-				</p:column>
+ 					<h:outputFormat value="ok!"  rendered="#{row.addInfo[0]}"/>
+				</p:column> 
 
 
 				<f:facet name="footer">
