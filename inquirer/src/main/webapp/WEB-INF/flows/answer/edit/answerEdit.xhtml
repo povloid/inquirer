@@ -36,15 +36,15 @@
 					<h:outputText value="#{answerEditWFControl.edited.id}"
 						rendered="#{answerEditWFControl.edited.id != null}" />
 
-					<h:outputLabel value="KeyName:" />
-					<p:inputText value="#{answerEditWFControl.edited.keyName}"
-						title="Username" readonly="#{del}" required="true"
-						requiredMessage="The keyName field is required." />
+					<h:outputLabel value="Ответ:" />
+					<p:inputTextarea readonly="#{del}"
+						value="#{answerEditWFControl.edited.keyName}"
+						style="width:600px;height:100px;" title="Description" />
 
-					<h:outputLabel value="Description:" />
+					<h:outputLabel value="Пометки:" />
 					<p:inputTextarea readonly="#{del}"
 						value="#{answerEditWFControl.edited.description}"
-						style="width:300px;height:100px;" title="Description" />
+						style="width:600px;height:100px;" title="Description" />
 						
 			
 				</h:panelGrid>
